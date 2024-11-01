@@ -1,38 +1,40 @@
 ﻿namespace Library;
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 
-public class Node
+public class Node<T>
 {
-    private int number;
+    private T number;
 
-    private List<Node> children = new List<Node>();
+    private List<Node<T>> children = new List<Node<T>>();
 
-    public int Number {
+    public T Number {
         get
         {
             return this.number;
         }
     }
 
-    public ReadOnlyCollection<Node> Children {
+    public ReadOnlyCollection<Node<T>> Children {
         get
         {
             return this.children.AsReadOnly();
         }
     }
 
-    public Node(int number)
+    public Node(T number)
     {
         this.number = number;
     }
 
-    public void AddChildren(Node n)
+    public void AddChildren(Node<T> n)
     {
         this.children.Add(n);
     }
-    public void Accept(IVisitor visitor)
+    public void Accept(IVisitor<T> visitor)
     {
         visitor.Visit(this);
         foreach (var item in this.children)
@@ -41,3 +43,4 @@ public class Node
         }
     }
 }
+

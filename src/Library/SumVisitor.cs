@@ -1,8 +1,8 @@
 namespace Library;
-
-public class SumVisitor: IVisitor
+public class SumVisitor: IVisitor<int>
 {
     private int sum = 0;
+
 
     public int Sum
     {
@@ -12,7 +12,7 @@ public class SumVisitor: IVisitor
         }
     }
 
-    public void Visit(Node node)
+    public void Visit(Node<int> node)
     {
         sum += node.Number;
     }
